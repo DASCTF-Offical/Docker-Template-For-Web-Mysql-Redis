@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bullseye
 COPY files /tmp/files/
 RUN mv /tmp/files/flag.sh / && \
     mv /tmp/files/start.sh / && \
@@ -7,8 +7,6 @@ RUN mv /tmp/files/flag.sh / && \
     mkdir /app && \
     chown -R root:root /app && \
     chmod -R 755 /app && \
-    sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list && \
-	  sed -i '/security/d' /etc/apt/sources.list && \
     apt-get update && \
     apt-get install libaio1 libnuma1 psmisc libmecab2 libatomic1 libncurses6 libsasl2-2 perl redis-server -y && \
     DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/files/mysql-common_5.7.29-1debian10_amd64.deb && \
